@@ -29,9 +29,9 @@
     </div> 
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <h4 class="text-center">Occupants</h4>
+         <h4 class="text-center">Occupants</h4>
             {% for occupant in hood.occupants.all %}
+            <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
                     <p>{{occupant.user.username}}</p>
@@ -41,23 +41,10 @@
                     <img src="{{occupant.profile_picture.url}}" alt="image">
                 </div>
             </div>
-            {% endfor %}
-        </div>
-        <div class=" col-md-6">
-            <h4 class="text-center">businesses</h4>
-            {% for biz in hood.business.all %}
-            <div class="card">
-            <div class="card-header text-center">
-               {{biz.name}} 
-               {{biz.email}}
-            </div>
-            <div class="card-body">
-                <p>{{biz.description}}</p>
-            </div>
-
             </div>
             {% endfor %}
-    </div>
+       
+      
     </div>
     
    

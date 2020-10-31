@@ -80,3 +80,31 @@ def my_hood(request, hood_id):
         'business':business,
     }
     return render(request,'my_hood.html',params )
+
+def business(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    business = Business.objects.filter(hood=hood)
+    params={
+        'hood':hood,
+        'business':business,
+    }
+    return render(request,'business.html',params )
+
+def contacts(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    business = Business.objects.filter(hood=hood)
+    params={
+        'hood':hood,
+        'business':business,
+    }
+    return render(request,'contacts.html',params )
+
+def announcements(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    business = Business.objects.filter(hood=hood)
+    params={
+        'hood':hood,
+        'business':business,
+    }
+    return render(request,'announcements',params )
+

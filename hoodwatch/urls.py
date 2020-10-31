@@ -16,6 +16,9 @@ urlpatterns=[
     url(r'join/(\d+)', views.join, name='join-hood'),
     url(r'leave/(\d+)', views.leave, name='leave-hood'),
     url(r'hood/(\d+)', views.my_hood, name='my-hood'),
+    url(r'business/(\d+)', views.business, name='hood-business'),
+    url(r'contacts/(\d+)', views.contacts, name='hood-contacts'),
+    url(r'announcements/(\d+)', views.announcements, name='announcements'),
 
 ]
 if settings.DEBUG:

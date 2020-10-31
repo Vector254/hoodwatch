@@ -19,7 +19,6 @@ class NeighbourHood(models.Model):
     location = models.CharField(max_length=60)
     admin = models.ForeignKey("Profile", on_delete=models.CASCADE)
     description = models.TextField(blank=True, max_length=500)
-    contact_info = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.name} NeighbourHood'
@@ -34,3 +33,21 @@ class Business(models.Model):
     def __str__(self):
         return f'{self.name} Business'
    
+class Contacts(models.Model):
+    hood = models.ForeignKey(NeighbourHood,related_name='contacts', on_delete=models.CASCADE)
+    health = models.IntegerField(null=True, blank=True)
+    police = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.hood} Contacts'
+
+
+class Posts(models.Model):
+    title = models.CharField(max_length=120, null=True)
+    post = models.TextField(blank=True, max_length=500)
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='author')
+    hood = models.ForeignKey(NeighbourHood,related_name='posts', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.hood} Posts'

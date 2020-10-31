@@ -36,7 +36,7 @@
         </div>
         <div class="card col-md-4">
             <div class="card-header">
-                <button class="btn btn-outline-info">Businesses</button>
+               <a class="btn btn-outline-info" href="{% url 'hood-business' %}">Businesses</a>
             </div>
             <div class="card-body">
                 <p>Find all businesses within your hood</p>
@@ -44,7 +44,7 @@
         </div>
         <div class="card col-md-4">
             <div class="card-header">
-                <button class="btn btn-outline-info">Emmergency contacts</button>
+                <a class="btn btn-outline-info" href="{% url 'hood-contacts' %}">Emmergency contacts</a>
             </div>
             <div class="card-body">
                 <p>Get a list of all emergency contacts within your hood</p>
@@ -52,7 +52,7 @@
         </div>
         <div class="card col-md-4">
             <div class="card-header">
-                <button class="btn btn-outline-info">Announcements</button>
+                <a class="btn btn-outline-info" href="{% url 'announcements' %}">Announcements</a>
             </div>
             <div class="card-body">
                 <p>Don't miss any upcoming events or meetings</p>
