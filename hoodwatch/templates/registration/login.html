@@ -1,10 +1,33 @@
 {%extends "base.html"%}
 {% load bootstrap3 %}
 {% block content %}
+<style>
+  body{
+    background-color: black;
+  }
+  
+  .card{
+    background-color:black;
+    color: #ffda22;
+  }
+  .top {
+    color: #ffda22;
+    
+  }
+  .top img{
+    width:80% ;
+    height: 80%;
+  }
+</style>
 <div class="container">
     <div class="row">
         
-      
+        <div class=" col-md-6">
+          <div class="top text-center">
+            <img src="../../../static/images/warn.png" alt="">
+            <h1>If I don't call the police, my neighbour will!</h1>
+          </div>
+        </div>
         <div class="col-md-6 ">
             
                 
@@ -14,7 +37,7 @@
               <div class="card">
         
                 <div class="card-header">
-                    <h1 id="name">sign in</h1>
+                    <h1 class="text-center">sign in</h1>
                 </div>
                 <div class="card-body">
         
@@ -23,7 +46,7 @@
                     {% bootstrap_form form%}
         
                     <div class="form-group">
-                      <input type="submit" class="btn btn-info" value="Login">
+                      <input type="submit" class="btn btn-outline-warning" value="Login">
                     </div>
                     <div class="card-body">
                         <a href="/accounts/password_reset/">forgot password?</a><br>

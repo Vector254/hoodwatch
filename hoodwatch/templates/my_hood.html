@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 {{block.super}}
+<style>
+    .profile{
+        width: 50px;
+        height: 50px;
+    }
+</style>
 <div class="container">
     
    
@@ -28,17 +34,20 @@
         </div>
     </div> 
     </div>
+    
+    <h4 class="text-center">Occupants</h4>
     <div class="row">
-         <h4 class="text-center">Occupants</h4>
             {% for occupant in hood.occupants.all %}
+            
             <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <p>{{occupant.user.username}}</p>
-                    <p> {{occupant.user.email}}</p>
+                    <img class="profile" src="{{occupant.profile_picture.url}}" alt="image">
                 </div>
                 <div class="card-body">
-                    <img src="{{occupant.profile_picture.url}}" alt="image">
+                    
+                    <p>{{occupant.user.username}}</p>
+                    <p> {{occupant.user.email}}</p>
                 </div>
             </div>
             </div>

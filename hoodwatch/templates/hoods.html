@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 {{block.super}}
+<style>
+    
+    .card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+</style>
 <div class="container">
     <h3 class="text-center">All hoods</h3>
+    <hr>
     <div class="row">
     {% for hood in hoods %}
     <div class="card col-md-4">

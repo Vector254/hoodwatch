@@ -4,12 +4,13 @@
 <div class="container">
 
     <h4 class="text-center">Businesses within {{hood.name}}</h4>
+    <hr>
     <!--search form-->
     <form id="search" class="navbar-form " role="search" action="{% url 'search' %}">
 
         <div class="input-group">
           <input type="text" class="form-control text-center" placeholder="search business" name="query">
-          <button type="submit" class="btn btn-info"><i class="fa fa-search" aria-hidden="true"></i></button>
+          <button type="submit" class="btn btn-outline-warning btn-sm"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
   
       </form>
