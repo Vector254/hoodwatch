@@ -2,6 +2,6 @@ from django.contrib import admin
 from .models import Profile, NeighbourHood, Business
 
 # Register your models here.
-admin.site.Register(Profile)
-admin.site.Register(NeighbourHood)
-admin.site.Register(Business)
+admin.site.register(Profile)
+admin.site.register(NeighbourHood)
+admin.site.register(Business)
