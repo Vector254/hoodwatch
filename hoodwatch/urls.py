@@ -19,7 +19,7 @@ urlpatterns=[
     url(r'business/(\d+)', views.business, name='hood-business'),
     url(r'contacts/(\d+)', views.contacts, name='hood-contacts'),
     url(r'announcements/(\d+)', views.announcements, name='announcements'),
-
+    url(r'^search/', views.search_results, name='search'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

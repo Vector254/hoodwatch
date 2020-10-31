@@ -121,3 +121,18 @@ def announcements(request, hood_id):
     }
     return render(request,'announcements.html',params )
 
+def search_results(request):
+    if request.method == 'GET':
+        name = request.GET.get("query")
+        results = Business.objects.filter(name__icontains=name).all()
+        print(results)
+        message = f'name'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any image category"
+    return render(request, 'search.html', {'message': message})
+

@@ -32,6 +32,11 @@ class Business(models.Model):
 
     def __str__(self):
         return f'{self.name} Business'
+
+    @classmethod
+    def search_business(cls, name):
+        return cls.objects.filter(name__icontains=name).all()
+
    
 class Contacts(models.Model):
     hood = models.ForeignKey(NeighbourHood,related_name='contacts', on_delete=models.CASCADE)
