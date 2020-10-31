@@ -1,0 +1,51 @@
+{%extends "base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        
+      
+        <div class="col-md-6 ">
+            
+                
+                {% if form.errors %}
+                <p> Password or Username is incorrect </p>
+              {% endif %}
+              <div class="card">
+        
+                <div class="card-header">
+                    <h1 id="name">sign in</h1>
+                </div>
+                <div class="card-body">
+        
+                  <form  action="" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form%}
+        
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-info" value="Login">
+                    </div>
+                    <div class="card-body">
+                        <a href="/accounts/password_reset/">forgot password?</a><br>
+                        Don't have an account? <a href="/register">Sign up</a>
+                    </div>
+                    <input type="hidden" name="next" value="{{next}}">
+        
+                  </form>
+        
+                </div>
+        
+              </div>    
+            </div>
+           
+        
+        </div>
+    
+    </div>
+    
+    
+    
+
+
+
+{% endblock %}
