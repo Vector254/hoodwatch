@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import UserRegistrationForm, ProfileUpdateForm, UserUpdateForm
-from .models import NeighbourHood, Profile, Business
+from .models import NeighbourHood, Profile, Business, Contacts, Posts
 
 # Create your views here.
 
@@ -92,19 +92,19 @@ def business(request, hood_id):
 
 def contacts(request, hood_id):
     hood = NeighbourHood.objects.get(id=hood_id)
-    business = Business.objects.filter(hood=hood)
+    contacts = Contacts.objects.filter(hood=hood)
     params={
         'hood':hood,
-        'business':business,
+        'contacts':contacts,
     }
     return render(request,'contacts.html',params )
 
 def announcements(request, hood_id):
     hood = NeighbourHood.objects.get(id=hood_id)
-    business = Business.objects.filter(hood=hood)
+    posts = Posts.objects.filter(hood=hood)
     params={
         'hood':hood,
-        'business':business,
+        'posts':posts,
     }
     return render(request,'announcements',params )
 
