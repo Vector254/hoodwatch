@@ -1,5 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
 {{block.super}}
+<style>
+    .card{
+        margin-bottom: 5px;
+    }
+</style>
+<div class="container">
     <h3 class="text-center">Dashboard</h3>
+    <div class="row">
+        
+        <div class="card col-md-4">
+            <div class="card-header">
+                <b>Profile</b>
+            </div>
+        </div>
+        <div class="card col-md-4">
+            <div class="card-header">
+                <b>My hood</b>
+            </div>
+        </div>
+        <div class="card col-md-4">
+            <div class="card-header">
+                <b>businesses</b>
+            </div>
+        </div>
+        <div class="card col-md-4">
+            <div class="card-header">
+                <b>Emergency contacts</b>
+            </div>
+        </div>
+        <div class="card col-md-4">
+            <div class="card-header">
+                <b>Announcements</b>
+            </div>
+        </div>
+        <div class="card col-md-4">
+            <button class="btn btn-info">Log out</button>
+        </div>
+    </div>
+</div>
 {% endblock %}
