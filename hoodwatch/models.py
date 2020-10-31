@@ -46,7 +46,7 @@ class Posts(models.Model):
     title = models.CharField(max_length=120, null=True)
     post = models.TextField(blank=True, max_length=500)
     date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='author')
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='author')
     hood = models.ForeignKey(NeighbourHood,related_name='posts', on_delete=models.CASCADE)
 
     def __str__(self):

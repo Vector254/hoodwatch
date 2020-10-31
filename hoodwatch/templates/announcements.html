@@ -1,9 +1,39 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 {{block.super}}
 <div class="container">
 
     <h4 class="text-center">Announcements for {{hood.name}}</h4>
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalCenter">
+        Announce
+      </button>
+
+    
+<!-- Modal -->
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">create announcement</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form|crispy}}
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary " value="Post">
+                </div>
+            </form>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+    
     <div class="row">
        {% for post in posts %}
        <div class="col-md-4">
@@ -15,7 +45,7 @@
                <p>{{post.post}}</p>
            </div>
            <div class="card-footer text-muted">
-                <p>By: {{post.author}} <span style="float: right;">{{post.date}}</span></p>
+                <p>By: {{post.author.user}} <span style="float: right;">{{post.date}}</span></p>
            </div>
        </div>
        </div>

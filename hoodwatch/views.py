@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-from .forms import UserRegistrationForm, ProfileUpdateForm, UserUpdateForm
+from .forms import UserRegistrationForm, ProfileUpdateForm, UserUpdateForm, PostForm
 from .models import NeighbourHood, Profile, Business, Contacts, Posts
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
-
+@login_required
 def index(request):
     hoods = NeighbourHood.objects.all()
     params ={
@@ -102,9 +104,20 @@ def contacts(request, hood_id):
 def announcements(request, hood_id):
     hood = NeighbourHood.objects.get(id=hood_id)
     posts = Posts.objects.filter(hood=hood)
+    current_user = request.user
+    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES or None)
+        if form.is_valid():
+            add=form.save(commit=False)
+            add.author = request.user.profile
+            add.hood = hood
+            add.save()
+            return redirect('announcements',hood.id)
     params={
         'hood':hood,
         'posts':posts,
+        'form':form,
     }
     return render(request,'announcements.html',params )
 
