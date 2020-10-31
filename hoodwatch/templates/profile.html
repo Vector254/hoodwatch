@@ -10,7 +10,8 @@
         <div class="col-md-4">
             <h1>{{user.username}} </h1>   
             <p>email: <b>{{user.email}}</b> </p>
-            <p>contacts: <b>{{user.profile.contact}}</b></p>
+            <p>location: <b>{{user.profile.hood.location|capfirst}}</b></p>
+            <p>hood: <b>{{user.profile.hood.name|capfirst}}</b></p>
             <br><p>{{user.profile.bio}}</p>
 
 
