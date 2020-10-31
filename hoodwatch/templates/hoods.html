@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{{block.super}}
+<div class="container">
+    {% for hood in hoods %}
+    <div class="card col-md-4">
+        <div class="card-header">
+            <b>{{hood.name}}</b>
+        </div>
+        <div class="card-body">
+            <b>{{hood.location}}</b>
+            <p>{{hood.description}}</p>
+            <a href="#"><button class="btn btn-outline-success">join</button></a>
+        </div>
+        
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

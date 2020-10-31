@@ -50,3 +50,11 @@ def profile(request):
     }
    
     return render(request, 'profile.html', params)
+
+def hoods(request):
+    hoods = NeighbourHood.objects.all()
+    params ={
+        'hoods':hoods,
+    }
+
+    return render(request, 'hoods.html',params)
