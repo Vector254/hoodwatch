@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+{{block.super}}
+<div class="container">
+    
+   
+    <div class="card">
+        
+        <div class="card-header text-center">
+            <b>{{hood.name|capfirst}}</b>
+        </div>
+        
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+            <p>location: <b>{{hood.location|capfirst}}, Kenya</b></p>
+            <p>occupants: {{hood.occupants.count}}</p>
+            <p>businesses: {{hood.business.count}}</p>
+            </div>
+            <div class="col-md-6">
+            <p>{{hood.description}}</p>
+            {% if request.user.profile.hood == hood %}
+                <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger">Leave</a>
+            {% elif not request.user.profile.hood %}
+                <a href="{% url 'join-hood' hood.id %}" class="btn btn-outline-success">Join</a>
+            {% endif %}
+            </div>
+        </div>
+    </div> 
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="text-center">Occupants</h4>
+            {% for occupant in hood.occupants.all %}
+            <div class="card">
+                <div class="card-header">
+                    <p>{{occupant.user.username}}</p>
+                    <p> {{occupant.user.email}}</p>
+                </div>
+                <div class="card-body">
+                    <img src="{{occupant.profile_picture.url}}" alt="image">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class=" col-md-6">
+            <h4 class="text-center">businesses</h4>
+            {% for biz in hood.business.all %}
+            <div class="card">
+            <div class="card-header text-center">
+               {{biz.name}} 
+               {{biz.email}}
+            </div>
+            <div class="card-body">
+                <p>{{biz.description}}</p>
+            </div>
+
+            </div>
+            {% endfor %}
+    </div>
+    </div>
+    
+   
+    
+</div>
+{% endblock %}

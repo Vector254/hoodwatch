@@ -27,7 +27,7 @@ class NeighbourHood(models.Model):
 class Business(models.Model):
     name = models.CharField(max_length=120)
     email = models.EmailField(max_length=254)
-    hood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE)
+    hood = models.ForeignKey(NeighbourHood,related_name='business', on_delete=models.CASCADE)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     description = models.TextField(blank=True, max_length=500)
 

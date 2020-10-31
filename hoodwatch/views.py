@@ -63,7 +63,7 @@ def join(request, id):
     hood = get_object_or_404(NeighbourHood, id=id)
     request.user.profile.hood = hood
     request.user.profile.save()
-    return redirect('hoods')
+    return redirect('index')
 
 
 def leave(request, id):
@@ -71,3 +71,12 @@ def leave(request, id):
     request.user.profile.hood = None
     request.user.profile.save()
     return redirect('hoods')
+
+def my_hood(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    business = Business.objects.filter(hood=hood)
+    params={
+        'hood':hood,
+        'business':business,
+    }
+    return render(request,'my_hood.html',params )

@@ -11,7 +11,7 @@
     <div class="row">
         <div class="card col-md-4">
             <div class="card-header">
-                <a href="{% url 'hoods' %}"><button class="btn btn-outline-success">Hoods</button></a>
+                <a class="btn btn-outline-success" href="{% url 'hoods' %}">Hoods</a>
             </div>
             <div class="card-body">
                 <p>View all hoods available and join yours</p>
@@ -25,9 +25,10 @@
                 <p>View and edit your profile information</p>
             </div>
         </div>
+        {% if user.profile.hood %}
         <div class="card col-md-4">
             <div class="card-header">
-                <a href=""><button class="btn btn-outline-info">My hood</button></a>
+                <a href="{% url 'my-hood' user.profile.hood.id %}"><button class="btn btn-outline-info">My hood</button></a>
             </div>
             <div class="card-body">
                 <p>View more details about your hood</p>
@@ -57,8 +58,9 @@
                 <p>Don't miss any upcoming events or meetings</p>
             </div>
         </div>
+        {% endif %}
         <div class="card col-md-4">
-           <a href="{% url 'logout' %}"> <button class="btn btn-outline-danger">Log out</button>
+           <a class="btn btn-outline-danger" href="{% url 'logout' %}"> Log out</a>
         </div>
     </div>
 </div>
