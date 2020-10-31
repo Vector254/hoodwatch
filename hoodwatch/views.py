@@ -106,5 +106,5 @@ def announcements(request, hood_id):
         'hood':hood,
         'posts':posts,
     }
-    return render(request,'announcements',params )
+    return render(request,'announcements.html',params )
 

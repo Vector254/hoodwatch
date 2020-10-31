@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{{block.super}}
+<div class="container">
+
+    <h4 class="text-center">Businesses within {{hood.name}}</h4>
+    <div class="row">
+       {% for biz in business %}
+       <div class="col-md-4">
+       <div class="card">
+           <div class="card-header">
+               <p>{{biz.name}}</p>
+               <p> {{biz.email}}</p>
+           </div>
+           <div class="card-body">
+               <p>{{biz.description}}</p>
+           </div>
+       </div>
+       </div>
+       {% endfor %}
+    </div>
+ 
+
+</div>
+{% endblock %}

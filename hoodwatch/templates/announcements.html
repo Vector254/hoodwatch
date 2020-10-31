@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{{block.super}}
+<div class="container">
+
+    <h4 class="text-center">Announcements for {{hood.name}}</h4>
+    <div class="row">
+       {% for post in posts %}
+       <div class="col-md-4">
+       <div class="card">
+           <div class="card-header">
+               <p>{{post.title}}</p>
+           </div>
+           <div class="card-body">
+               <p>{{post.post}}</p>
+           </div>
+           <div class="card-footer text-muted">
+                <p>By: {{post.author}} <span style="float: right;">{{post.date}}</span></p>
+           </div>
+       </div>
+       </div>
+       {% endfor %}
+    </div>
+ 
+
+</div>
+{% endblock %}
