@@ -10,6 +10,7 @@
         </div>
         <div class="card-body">
             <p>in <b>{{hood.location|capfirst}}, Kenya</b></p>
+            <p>occupants: {{hood.occupants.count}}</p>
             <p>{{hood.description}}</p>
             {% if request.user.profile.hood == hood %}
                 <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger">Leave</a>

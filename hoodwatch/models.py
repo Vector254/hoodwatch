@@ -9,7 +9,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=254, blank=True)
     profile_picture = models.ImageField(upload_to='images/', default='default.png')
     location = models.CharField(max_length=50, blank=True, null=True)
-    hood = models.ForeignKey('NeighbourHood', on_delete=models.CASCADE, blank=True, null=True)
+    hood = models.ForeignKey('NeighbourHood', on_delete=models.CASCADE,related_name='occupants', blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
