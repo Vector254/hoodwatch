@@ -2,18 +2,25 @@
 {% block content %}
 {{block.super}}
 <div class="container">
+    <div class="row">
     {% for hood in hoods %}
     <div class="card col-md-4">
         <div class="card-header">
-            <b>{{hood.name}}</b>
+            <b>{{hood.name|capfirst}}</b>
         </div>
         <div class="card-body">
-            <b>{{hood.location}}</b>
+            <p>in <b>{{hood.location|capfirst}}, Kenya</b></p>
             <p>{{hood.description}}</p>
-            <a href="#"><button class="btn btn-outline-success">join</button></a>
+            {% if request.user.profile.hood == hood %}
+                <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger">Leave</a>
+            {% elif not request.user.profile.hood %}
+                <a href="{% url 'join-hood' hood.id %}" class="btn btn-outline-success">Join</a>
+            {% endif %}
+            
         </div>
         
     </div>
     {% endfor %}
+    </div>
 </div>
 {% endblock %}

@@ -13,6 +13,8 @@ urlpatterns=[
     url('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     url('profile/', views.profile, name='profile'),
     url('hoods/', views.hoods, name='hoods'),
+    url(r'join/(\d+)', views.join, name='join-hood'),
+    url(r'leave/(\d+)', views.leave, name='leave-hood'),
 
 ]
 if settings.DEBUG:

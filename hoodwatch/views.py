@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .forms import UserRegistrationForm, ProfileUpdateForm, UserUpdateForm
 from .models import NeighbourHood, Profile, Business
@@ -58,3 +58,16 @@ def hoods(request):
     }
 
     return render(request, 'hoods.html',params)
+
+def join(request, id):
+    hood = get_object_or_404(NeighbourHood, id=id)
+    request.user.profile.hood = hood
+    request.user.profile.save()
+    return redirect('hoods')
+
+
+def leave(request, id):
+    hood = get_object_or_404(NeighbourHood, id=id)
+    request.user.profile.hood = None
+    request.user.profile.save()
+    return redirect('hoods')
