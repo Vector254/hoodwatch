@@ -4,6 +4,8 @@ from .forms import UserRegistrationForm, ProfileUpdateForm, UserUpdateForm, Post
 from .models import NeighbourHood, Profile, Business, Contacts, Posts
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .myemail import send_welcome_email
+
 
 # Create your views here.
 @login_required
@@ -20,6 +22,10 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
+            name = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            send_welcome_email(name,email)
+
             messages.success(request, f'Account created successfully!')
             return redirect('login')
     else:
@@ -135,4 +141,6 @@ def search_results(request):
     else:
         message = "You haven't searched for any image category"
     return render(request, 'search.html', {'message': message})
+
+
 
