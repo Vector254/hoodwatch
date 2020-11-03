@@ -17,11 +17,21 @@ class Profile(models.Model):
 class NeighbourHood(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=60)
-    admin = models.ForeignKey("Profile", on_delete=models.CASCADE)
+    admin = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(blank=True, max_length=500)
 
     def __str__(self):
         return f'{self.name} NeighbourHood'
+
+    def save_hood(self):
+        self.save()
+
+    def delete_hood(self):
+        self.delete()
+
+    @classmethod
+    def search_hood(cls, name):
+        return cls.objects.filter(name__icontains=name).all()
 
 class Business(models.Model):
     name = models.CharField(max_length=120)

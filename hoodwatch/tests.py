@@ -21,15 +21,15 @@ class HoodTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(id=1, username='test')
         self.hood = NeighbourHood.objects.create(id=1, name='test',location='Nairobi', description='This is a test hood',
-                        admin=self.admin )
+                        admin=self.user )
 
     def test_instance(self):
         self.assertTrue(isinstance(self.hood, NeighbourHood))
 
     def test_save_hood(self):
-        self.post.save_post()
-        post = Post.objects.all()
-        self.assertTrue(len(post) > 0)
+        self.hood.save_hood()
+        hood = NeighbourHood.objects.all()
+        self.assertTrue(len(hood) > 0)
 
     def test_get_hoods(self):
         self.hood.save()
@@ -46,7 +46,9 @@ class BusinessTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(id=1, username='test')
         self.hood = NeighbourHood.objects.create(id=1, name='test',location='Nairobi', description='This is a test hood',
-                        admin=self.admin )
+                        admin=self.user )
+        self.profile = Profile.objects.create(user=self.user,name='test', email='test@gmail.com',bio='my bio', profile_picture='media/default.png', 
+                        location='Test_location', hood=self.hood )
         self.biz = Business.objects.create(id=1, name='test', email='test@gmail.com', description='This is a test post',
                                         user=self.user, hood=self.hood)
 
@@ -65,22 +67,22 @@ class BusinessTest(TestCase):
 
     def test_search_biz(self):
         self.biz.save()
-        biz = Business.search_post('test')
+        biz = Business.search_biz('test')
         self.assertTrue(len(biz) > 0)
 
-    def test_delete_biz(self):
-        self.biz.delete_biz()
-        biz = Business.search_biz('test')
-        self.assertTrue(len(biz) < 1)
+    
 
 class PostTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(id=1, username='test')
-        self.post = Posts.objects.create(id=1, title='test post', description='This is a test post',
-                                        author=self.user)
+        self.hood = NeighbourHood.objects.create(id=1, name='test',location='Nairobi', description='This is a test hood',
+                        admin=self.user )
+        self.profile = Profile.objects.create(user=self.user,name='test', email='test@gmail.com',bio='my bio', profile_picture='media/default.png', location='Test_location', hood=self.hood )
+        self.post = Posts.objects.create(id=1, title='test post', post='This is a test post',hood=self.hood,
+                                        author=self.profile)
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.post, Post))
+        self.assertTrue(isinstance(self.post, Posts))
 
     def test_save_post(self):
         self.post.save_post()
